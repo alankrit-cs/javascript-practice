@@ -1,13 +1,36 @@
-const todos = ['todo 1', 'todo 2', 'todo 3', 'todo 4', 'todo 5']
+let todos = [{
+    text: 'Complete JavaScript',
+    completed: false
+},{
+    text: 'Take Notes',
+    completed: false
+},{
+    text: 'Buy Food',
+    completed: true
+},{
+    text: 'Cook',
+    completed: true
+},{
+    text: 'Eat',
+    completed: true
+}]
 
-todos.splice(2,1);
-todos.push('The last todo');
-todos.shift();
+const deleteTodos = function(AllTodoS, ItemTextToDelete){
+    const Index = AllTodoS.findIndex(function(todo, index){
+        return todo.text.toLowerCase() === ItemTextToDelete.toLowerCase();
+    });
+    if(Index>-1){
+        AllTodoS.splice(Index,1);
+    }
+}
 
-//Length of an array
-console.log(`You have ${todos.length} todos`);
+// deleteTodos(todos, 'book')
+// console.log(todos);
 
-todos.forEach(function(data,index){
-    console.log(`${index+1}. ${data}`);
-});
+const getThingsToDo = function(listOfItems){
+    return itemsToDo = listOfItems.filter(function(item,index){
+        return item.completed === false;
+    })
+}
 
+console.log(getThingsToDo(todos));
