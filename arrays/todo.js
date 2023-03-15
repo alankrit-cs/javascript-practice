@@ -1,6 +1,6 @@
 let todos = [{
     text: 'Complete JavaScript',
-    completed: false
+    completed: true
 },{
     text: 'Take Notes',
     completed: false
@@ -12,7 +12,7 @@ let todos = [{
     completed: true
 },{
     text: 'Eat',
-    completed: true
+    completed: false
 }]
 
 const deleteTodos = function(AllTodoS, ItemTextToDelete){
@@ -33,4 +33,21 @@ const getThingsToDo = function(listOfItems){
     })
 }
 
-console.log(getThingsToDo(todos));
+// console.log(getThingsToDo(todos));
+
+const sortTodos = function(todos){
+    todos.sort(function(a,b){
+        if(a.completed === false && b.completed === true){
+            return -1;
+        }
+        else if(a.completed === true && b.completed === false){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    })
+}
+
+sortTodos(todos);
+console.log(todos);
