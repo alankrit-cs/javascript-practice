@@ -1,9 +1,50 @@
-document.querySelector('#create-notes').addEventListener('click', function(e){
-    console.log('Create button clicked');
+let notes = [
+    {
+        title: 'Wake up early morning',
+        body: 'Wake up by 7:00 AM in the morning'
+    },
+    {
+        title:'Eat your breakfast',
+        body: 'Have a protein rich platter'
+    },
+    {
+        title: 'Office',
+        body: 'Complete the office tasks assigned to you'
+    },    
+    {
+        title: 'Eat your lunch',
+        body: 'Have carbs, fat too'
+    },
+    {
+        title: 'Return home',
+        body: 'Reach home before 7:00 PMs'
+    }
+]
+
+let filters = {
+    searchText: ''
+}
+
+let renderNotes = function(notes,filters){
+    let filteredNotes = notes.filter(function(note){
+        return note.title.toLowerCase().includes(filters.searchText);
+    })
+    document.querySelector('#notes').innerHTML = ''
+
+    filteredNotes.forEach(function(filteredNote){
+        let notesEl = document.createElement('p')
+        notesEl.textContent = filteredNote.title
+        document.querySelector('#notes').appendChild(notesEl)
+    })
+}
+
+document.querySelector('#search-tag').addEventListener('input', function(e){
+    filters.searchText = e.target.value;
+    renderNotes(notes,filters)
 })
 
-document.querySelector('#remove-notes').addEventListener('click',function(e){
-    document.querySelectorAll('.note').forEach(function(note){
-        note.remove();
-    })
+notes.forEach(function(filteredNote){
+    let notesEl = document.createElement('p')
+    notesEl.textContent = filteredNote.title
+    document.querySelector('#notes').appendChild(notesEl)
 })
