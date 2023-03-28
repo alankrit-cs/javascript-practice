@@ -5,9 +5,16 @@
     <body>
         <h1>Todos App</h1>
         <input type="text" placeholder="Enter Your to-do here" id="todo-new">
+        <label>
+            <input type="checkbox" id="hideCompleted">Hide Completed Todos
+        </label>
         <div id="todos-all">
-
         </div>
+        <br>
+        <form id="create-todo">
+            <input type="text" name="todoText" placeholder="Enter your ToDo here">
+            <button>Submit Todo</button>
+        </form>
         <script src="todo.js"></script>
     </body>
 </html>

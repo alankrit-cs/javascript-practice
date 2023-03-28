@@ -48,3 +48,14 @@ notes.forEach(function(filteredNote){
     notesEl.textContent = filteredNote.title
     document.querySelector('#notes').appendChild(notesEl)
 })
+
+
+document.querySelector('#my-form').addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log(e.target.firstName.value)
+    e.target.firstName.value = ''
+})
+
+document.querySelector('#sort-selector').addEventListener('change', function(e){
+    console.log(e.target.value)
+})

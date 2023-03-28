@@ -16,7 +16,8 @@ let todos = [{
 }]
 
 let filters = {
-    searchText: ''
+    searchText: '',
+    hideCompleted: false
 }
 
 let summary = function(todos){
@@ -41,9 +42,24 @@ todos.forEach(function(todo){
 })
 
 let renderTodos = function(todos, filters){
-    var filteredTodos = todos.filter(function(todo){
-        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-    });
+    let filteredTodos
+    if(filters.hideCompleted === false){
+        filteredTodos = todos.filter(function(todo){
+            return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+        });
+    
+    }else{
+
+        filteredVals = todos.filter(function(todo){
+            return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+        });
+
+
+        filteredTodos = filteredVals.filter(function(todo){
+            return !todo.completed
+        })
+
+    }
 
     document.querySelector('#todos-all').innerHTML = '';
 
@@ -61,5 +77,18 @@ let renderTodos = function(todos, filters){
 
 document.querySelector('#todo-new').addEventListener('input',function(e){
     filters.searchText = e.target.value
+    renderTodos(todos, filters)
+})
+
+document.querySelector('#create-todo').addEventListener('submit', function(e){
+    e.preventDefault()
+    todos.push({text: e.target.todoText.value, completed:false})
+    filters.searchText=''
+    renderTodos(todos, filters)
+    e.target.todoText.value=''
+})
+
+document.querySelector('#hideCompleted').addEventListener('change', function(e){
+    filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
 })
