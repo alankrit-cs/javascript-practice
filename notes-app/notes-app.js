@@ -59,3 +59,12 @@ document.querySelector('#my-form').addEventListener('submit', function(e){
 document.querySelector('#sort-selector').addEventListener('change', function(e){
     console.log(e.target.value)
 })
+
+//localStorage
+localStorage.setItem('todoKey', JSON.stringify(notes))
+
+console.log(JSON.parse(localStorage.getItem('todoKey')))
+
+localStorage.removeItem('todoKey')
+
+localStorage.clear()
